@@ -1,14 +1,13 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash; // Import the Hash facade
-use Illuminate\Support\Facades\DB; // Import the DB facade
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
-
-class UserSeeder extends Seeder
-{
+class UserSeeder extends Seeder{
 
     public function run(): void
     {
@@ -18,7 +17,7 @@ class UserSeeder extends Seeder
                 'level_id' => 1,
                 'username' => 'admin',
                 'nama' => 'Administrator',
-                'password' => Hash::make('12345'), //class untuk mengenkripsi/hash password
+                'password' => Hash::make('12345'),
             ],
             [
                 'user_id' => 2,
@@ -35,6 +34,6 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('12345'),
             ],
         ];
-        DB::table('m_user')->insert($data);
+        DB::table('m_user') -> insert($data);
     }
 }
