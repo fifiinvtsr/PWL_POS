@@ -34,7 +34,6 @@ class UserController extends Controller
     //     // ];
     //     // UserModel::where('username', 'Customer-1')->update($data);
 
-    //     //Jobsheet 4 Praktikum 1
     //     // $data = [
     //     //     'level_id' => 2,
     //     //     'username' => 'manager_tiga',
@@ -46,7 +45,6 @@ class UserController extends Controller
     //     // $user = UserModel::all();
     //     // return view('user', ['data' => $user]);
 
-    //     //jobsheet 4-Prartikum 2.1
     //     //$user = UserModel::find(1);
     //     // $user = UserModel::where('level_id', 1)->first();
     //     // $user = UserModel::firstWhere('level_id', 1);
@@ -55,18 +53,15 @@ class UserController extends Controller
     //     //     });
     //     // return view('user',['data' => $user]);
 
-    //     //Jobsheet 4 - Praktikum 2.2
     //     // $user = UserModel::findOrFail(1);
     //     // $user = UserModel::where('username', 'manager9')->firstOrFail();
     //     // return view('user',['data' => $user]);
 
-    //     //Jobsheet 4 - Praktikum 2.3 
     //     // $user = UserModel::where('level_id', 2)->count();
     //     // dd($user);
     //     // $user = UserModel::where('level_id', 2)->count(); 
     //     // return view('user',['data' => $user]);
 
-    //     //Jobsheet 4 - Praktikum 2.4 
     //     // $user = UserModel::firstOrNew(
     //     //     [
     //     //         'username' => 'manager33',
@@ -81,7 +76,6 @@ class UserController extends Controller
 
     // }
 
-    //Jobsheet 4 - Praktikum 2.5
     // public function index() {
     //         $user = UserModel::create([
     //             'username' => 'manager55',
@@ -127,8 +121,6 @@ class UserController extends Controller
         // $user->wasChanged('nama'); // false
         // dd($user->wasChanged(['nama', 'username'])); //true
 
-
-    //Praktikum 2.6
     // public function index() {
             
     //     $user = UserModel::all();
@@ -183,7 +175,6 @@ class UserController extends Controller
     //         return redirect('/user');
     //     }
 
-        //Pratikum 2.7
         // public function index(){
         //     $user = UserModel::with('level')->get();
         //     dd($user);
@@ -195,7 +186,7 @@ class UserController extends Controller
         //     return view('user', ['data' => $user]);
         // }
 
-        // JS 5 PRAKTIKUM 3
+
         // menampilkan halaman user
         public function index()
         {
