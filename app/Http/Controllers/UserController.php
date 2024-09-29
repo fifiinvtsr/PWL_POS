@@ -188,23 +188,23 @@ class UserController extends Controller
 
 
         // menampilkan halaman user
-        public function index()
-        {
-            $breadcrumb = (object) [
-                'title' => 'Daftar User',
-                'list' => ['Home', 'User']
-            ];
+    public function index()
+    {
+        $breadcrumb = (object) [
+            'title' => 'Daftar User',
+            'list' => ['Home', 'User']
+        ];
 
-            $page = (object) [
-                'title' => 'Daftar user yang terdaftar dalam sistem'
-            ];
+        $page = (object) [
+            'title' => 'Daftar user yang terdaftar dalam sistem'
+        ];
 
-            $activeMenu = 'user'; // Set menu yang sedang aktif
+        $activeMenu = 'user'; // set menu yang sedang aktif
+        $level = LevelModel::all(); // ambil data level untuk filter level
 
-            $level = LevelModel::all(); // ambil data level untuk filter level
-
-            return view('user.index', [ 'breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
-        }
+        return view('user.index', [
+            'breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
+    }
 
         // Ambil data user dalam bentuk json untuk DataTables
         public function list(Request $request)
