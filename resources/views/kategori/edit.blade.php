@@ -1,4 +1,5 @@
 @extends('layouts.template')
+
 @section('content')
     <div class="card card-outline card-primary">
         <div class="card-header">
@@ -11,13 +12,15 @@
                     <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
                     Data yang Anda cari tidak ditemukan.
                 </div>
-                <a href="{{ url('user') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
+                <a href="{{ url('kategori') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
             @else
-                <form method="POST" action="{{ url('/kategori/' . $kategori->kategori_id) }}" class="formhorizontal">
+                <form method="POST" action="{{ url('/kategori/' . $kategori->kategori_id) }}" class="form
+horizontal">
                     @csrf
-                    {!! method_field('PUT') !!} <!-- tambahkan baris ini untuk proses edit yang butuh method PUT -->
+                    {!! method_field('PUT') !!} <!-- tambahkan baris ini untuk proses edit yang butuh
+                        method PUT -->
                     <div class="form-group row">
-                        <label class="col-1 control-label col-form-label">Kode kategori</label>
+                        <label class="col-1 control-label col-form-label">Kategori Kode</label>
                         <div class="col-11">
                             <input type="text" class="form-control" id="kategori_kode" name="kategori_kode"
                                 value="{{ old('kategori_kode', $kategori->kategori_kode) }}" required>
@@ -27,11 +30,11 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-1 control-label col-form-label">Nama kategori</label>
+                        <label class="col-1 control-label col-form-label">Kategori Nama</label>
                         <div class="col-11">
                             <input type="text" class="form-control" id="kategori_nama" name="kategori_nama"
                                 value="{{ old('kategori_nama', $kategori->kategori_nama) }}" required>
-                            @error('nama')
+                            @error('kategori_nama')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -48,6 +51,8 @@
         </div>
     </div>
 @endsection
+
 @push('css')
 @endpush
 @push('js')
+@endpush

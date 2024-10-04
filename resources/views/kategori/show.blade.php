@@ -19,20 +19,22 @@
                         <td>{{ $kategori->kategori_id }}</td>
                     </tr>
                     <tr>
-                        <th>Kode kategori</th>
+                        <th>Kategori Kode</th>
                         <td>{{ $kategori->kategori_kode }}</td>
                     </tr>
                     <tr>
-                        <th>Nama kategori</th>
+                        <th>Kategori Nama</th>
                         <td>{{ $kategori->kategori_nama }}</td>
                     </tr>
                 </table>
             @endempty
-        <a href="{{ url('kategori') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
+            <a href="{{ url('kategori') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
+        </div>
     </div>
-</div>
 @endsection
+
 @push('css')
 @endpush
+
 @push('js')
 @endpush
