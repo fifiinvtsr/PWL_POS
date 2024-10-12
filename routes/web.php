@@ -14,16 +14,6 @@ use App\Http\Controllers\WelcomeController;
 use App\Models\KategoriModel;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 /*Route::get('/', function () {
     return view('welcome');
@@ -39,9 +29,6 @@ Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
 Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);*/
 
 Route::pattern('id', '[0-9]+'); //ketika ada parameter {id}, maka harus berupa angka
-
-// Route::get('signup', [RegistrationController::class, 'registration'])->name('signup');
-// Route::post('signup', [RegistrationController::class, 'store']);
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'postlogin']);
