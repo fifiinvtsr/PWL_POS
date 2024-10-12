@@ -92,5 +92,4 @@
 </script>
 @stack('js') <!-- untuk memanggil custom js dari perintah push('js') pada masing-masing view -->
 </body>
-
 </html>
