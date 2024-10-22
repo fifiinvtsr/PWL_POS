@@ -442,4 +442,10 @@ class BarangController extends Controller
 
         return $pdf->stream('Data Barang'.date('Y-m-d H:i:s').'.pdf');
     }
+
+    public function show_ajax(string $id) {
+        $barang = BarangModel::find($id);
+
+        return view('barang.show_ajax', ['barang' => $barang]);
+    } 
 }

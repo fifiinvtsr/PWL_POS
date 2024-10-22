@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class RegistrasiController extends Controller
 {
     // Menampilkan halaman form tambah user
-    public function registration()
+    public function registrasi()
     {
         $level = LevelModel::select('level_id', 'level_nama')->get();
 
