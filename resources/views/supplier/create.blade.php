@@ -10,9 +10,9 @@
             <form method="POST" action="{{ url('supplier') }}" class="form-horizontal">
                 @csrf
                 <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Kode supplier</label>
+                    <label class="col-1 control-label col-form-label">Supplier Kode</label>
                     <div class="col-11">
-                        <input type="text" class="form-control" id="supplier_kode" name="supplier_kode"
+                        <input type="text" class="form-control" id="supplier_nama" name="supplier_kode"
                             value="{{ old('supplier_kode') }}" required>
                         @error('supplier_kode')
                             <small class="form-text text-danger">{{ $message }}</small>
@@ -20,20 +20,20 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Nama supplier</label>
+                    <label class="col-1 control-label col-form-label">Supplier Nama</label>
                     <div class="col-11">
-                        <input type="text" class="form-control" id="supplier_nama" name="supplier_nama" value="{{ old('supplier_nama') }}"
-                            required>
+                        <input type="text" class="form-control" id="supplier_nama" name="supplier_nama"
+                            value="{{ old('supplier_nama') }}" required>
                         @error('supplier_nama')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Alamat supplier</label>
+                    <label class="col-1 control-label col-form-label">Supplier Alamat</label>
                     <div class="col-11">
-                        <input type="text" class="form-control" id="supplier_alamat" name="supplier_alamat" value="{{ old('supplier_alamat') }}"
-                            required>
+                        <input type="text" class="form-control" id="supplier_alamat" name="supplier_alamat"
+                            value="{{ old('supplier_alamat') }}" required>
                         @error('supplier_alamat')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror

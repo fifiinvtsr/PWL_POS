@@ -5,7 +5,9 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <a class="btn btn-sm btn-primary mt-1" href="{{ url('user/create') }}">Tambah</a>
+                <button onclick="modalAction('{{ url('/user/import') }}')" class="btn btn-info">Impor User</button>
+                <a href="{{ url('/user/export_excel') }}" class="btn btn-primary"><i class="fa fa-file-excel"></i> Ekspor Data User</a>
+                <a href="{{ url('/user/export_pdf') }}" class="btn btn-warning"><i class="fa fa-file-pdf"></i> Ekspor Data User</a>
                 <button onclick="modalAction('{{ url('/user/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah Ajax</button>
             </div>
         </div>
@@ -34,7 +36,7 @@
             </div>
             <table class="table table-bordered table-striped table-hover table-sm" id="table_user">
                 <thead>
-                    <tr><th>ID</th><th>Username</th><th>Nama</th><th>Level Pengguna</th><th>Aksi</th></tr>
+                    <tr><th>ID</th><th>Username</th><th>Nama</th><th>Level Pengguna</th><th>Foto</th><th>Aksi</th></tr>
                 </thead>
             </table>
         </div>
@@ -90,6 +92,21 @@
                         className: "",
                         orderable: false,
                         searchable: false
+                    },{
+                        data: "foto",
+                        className: "",
+                        width: "14%",
+                        orderable: false,
+                        searchable: false,
+                        "render": function(data) {
+                            // Check if data exists
+                            if (data) {
+                                // Construct the image URL using Blade syntax
+                                return '<img src=" {{ asset('data') }} " width="50px"/>';
+                            }
+                            return 'Foto kosong'; // Return empty if no data
+                        
+                    }
                     },{
                         data: "aksi",
                         className: "",

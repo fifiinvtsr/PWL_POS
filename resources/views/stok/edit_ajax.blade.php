@@ -1,4 +1,4 @@
-@empty($supplier)
+@empty($stok)
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,35 +9,60 @@
                 <div class="alert alert-danger">
                     <h5><i class="icon fas fa-ban"></i> Kesalahan!!!</h5>
                     Data yang anda cari tidak ditemukan</div>
-                <a href="{{ url('/supplier') }}" class="btn btn-warning">Kembali</a>
+                <a href="{{ url('/stok') }}" class="btn btn-warning">Kembali</a>
             </div>
         </div>
     </div>
 @else
-    <form action="{{ url('/supplier/' . $supplier->supplier_id.'/update_ajax') }}" method="POST" id="form-edit">
+    <form action="{{ url('/stok/' . $stok->stok_id.'/update_ajax') }}" method="POST" id="form-edit">
     @csrf
     @method('PUT')
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Data Supplier</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Data Stok</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Kode Supplier</label>
-                    <input value="{{ $supplier->supplier_kode }}" type="text" name="supplier_kode" id="supplier_kode" class="form-control" required>
-                    <small id="error-supplier_kode" class="error-text form-text text-danger"></small>
+                    <label>Supplier</label>
+                    <select name="supplier_id" id="supplier_id" class="form-control" required>
+                        <option value="">- Pilih Supplier -</option>
+                        @foreach($supplier as $item)
+                            <option {{ ($item->supplier_id == $stok->supplier_id)? 'selected' : '' }} value="{{ $item->supplier_id }}">{{ $item->supplier_nama }}</option>
+                        @endforeach
+                    </select>
+                    <small id="error-supplier_id" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
-                    <label>Nama Supplier</label>
-                    <input value="{{ $supplier->supplier_nama }}" type="text" name="supplier_nama" id="supplier_nama" class="form-control" required>
-                    <small id="error-supplier_nama" class="error-text form-text text-danger"></small>
+                    <label>Barang</label>
+                    <select name="barang_id" id="barang_id" class="form-control" required>
+                        <option value="">- Pilih Barang -</option>
+                        @foreach($barang as $item)
+                            <option {{ ($item->barang_id == $stok->barang_id)? 'selected' : '' }} value="{{ $item->barang_id }}">{{ $item->barang_nama }}</option>
+                        @endforeach
+                    </select>
+                    <small id="error-barang_id" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
-                    <label>Alamat Supplier</label>
-                    <input value="{{ $supplier->supplier_alamat }}" type="text" name="supplier_alamat" id="supplier_alamat" class="form-control" required>
-                    <small id="error-supplier_alamat" class="error-text form-text text-danger"></small>
+                    <label>User</label>
+                    <select name="user_id" id="user_id" class="form-control" required>
+                        <option value="">- Pilih User -</option>
+                        @foreach($user as $item)
+                            <option {{ ($item->user_id == $stok->user_id)? 'selected' : '' }} value="{{ $item->user_id }}">{{ $item->nama }}</option>
+                        @endforeach
+                    </select>
+                    <small id="error-user_id" class="error-text form-text text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label>Waktu Stok</label>
+                    <input value="{{ $stok->stok_tanggal }}" type="text" name="stok_tanggal" id="stok_tanggal" class="form-control" required>
+                    <small id="error-stok_tanggal" class="error-text form-text text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label>Jumlah Stok</label>
+                    <input value="{{ $stok->stok_jumlah }}" type="text" name="stok_jumlah" id="stok_jumlah" class="form-control" required>
+                    <small id="error-stok_jumlah" class="error-text form-text text-danger"></small>
                 </div>
             </div>
             <div class="modal-footer">
@@ -51,15 +76,20 @@
         $(document).ready(function() {
             $("#form-edit").validate({
                 rules: {
-                    supplier_kode: {required: true, minlength: 3, maxlength: 20},
-                    supplier_nama: {required: true, minlength: 3, maxlength: 100},
-                    supplier_alamat: {required: true, minlength: 3, maxlength: 255}
+                    user_id: { required: true, number: true },
+                    supplier_id: { required: true, number: true },
+                    barang_id: { required: true, number: true },
+                    stok_tanggal: { required: true, date: true },
+                    stok_jumlah: { required: true, number: true }
                 },
                 submitHandler: function(form) {
+                    var formData = new FormData(form);
                     $.ajax({
                         url: form.action,
                         type: form.method,
-                        data: $(form).serialize(),
+                        data: formData,
+                            processData: false, // setting processData dan contentType ke false, untuk menghandle file 
+                            contentType: false,
                         success: function(response) {
                             if(response.status){
                                 $('#myModal').modal('hide');
@@ -68,7 +98,7 @@
                                     title: 'Berhasil',
                                     text: response.message
                                 });
-                                dataSupplier.ajax.reload();
+                                dataStok.ajax.reload();
                             }else{
                                 $('.error-text').text('');
                                 $.each(response.msgField, function(prefix, val) {

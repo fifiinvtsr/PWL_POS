@@ -36,16 +36,19 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="{{ url('/') }}" class="brand-link">
+            <button onclick="modalAction('{{ url('/user/' . session('user_id') . '/edit_ajax') }}')" class="btn brand-link">
                 @if (session()->has('profile_img_path'))
-                    <img src="{{ asset('storage/' . session('profile_img_path')) }}" alt="Profile Picture"
+                    <img id="profile-picture" src="{{ asset('storage/' . session('profile_img_path')) }}" alt="Profile Picture"
                         class="brand-image img-circle elevation-3">
                 @else
                     <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                         class="brand-image img-circle elevation-3" style="opacity: .8">
                 @endif
                 <span class="brand-text font-weight-light">PWL - Starter Code</span>
-            </a>
+            </button>
+
+            {{-- <button onclick="modalAction('{{ url('/user/' . session('user_id') . '/edit_ajax') }}')"
+                class="btn btn-primary btn-sm">Edit Profil</button> --}}
 
             <!-- Sidebar -->
             @include('layouts.sidebar')
@@ -73,6 +76,8 @@
         </aside>
         <!-- /.control-sidebar -->
     </div>
+    <div id="myModal1" class="modal fade animate shake" tabindex="-1" role="dialog" data backdrop="static"
+        data-keyboard="false" data-width="75%" aria-hidden="true"></div>
     <!-- ./wrapper -->
 
     <!-- jQuery -->
@@ -103,6 +108,12 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
     <script>
+        function modalAction(url = '') {
+            $('#myModal1').load(url, function() {
+                $('#myModal1').modal('show');
+            });
+        }
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
