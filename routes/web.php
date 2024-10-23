@@ -41,7 +41,7 @@ Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);*/
 Route::pattern('id', '[0-9]+'); //ketika ada parameter {id}, maka harus berupa angka
 
 
-Route::get('signup', [RegistrasiController::class, 'registration'])->name('signup');
+Route::get('signup', [RegistrasiController::class, 'registrasi'])->name('signup');
 Route::post('signup', [RegistrasiController::class, 'store']);
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
