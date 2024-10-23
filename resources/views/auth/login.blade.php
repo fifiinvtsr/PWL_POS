@@ -58,11 +58,12 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center; /* Memastikan isi di dalam right-section di tengah */
             color: #000000; /* Ubah seluruh teks di dalam right-section menjadi hitam */
+            text-align: center; /* Untuk menengahkan teks */
         }
 
         .right-section h2 {
-            text-align: center;
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 20px;
@@ -70,13 +71,13 @@
         }
 
         .right-section p {
-            text-align: center;
             margin-bottom: 30px;
             color: #000000; /* Ubah warna teks menjadi hitam */
         }
 
         .input-group {
             margin-bottom: 15px;
+            width: 100%; /* Mengisi lebar penuh */
         }
 
         .input-group input {
@@ -106,6 +107,7 @@
 
         .remember-me {
             margin-top: 10px;
+            width: 100%; /* Tambahkan agar checkbox menyesuaikan dengan form */
         }
 
         .register-link {

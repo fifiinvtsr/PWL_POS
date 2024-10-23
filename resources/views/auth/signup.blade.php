@@ -30,100 +30,94 @@
         .login-box {
             width: 400px;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .card {
-            background: transparent;
-        }
-
-        .card-header a {
-            font-weight: bold;
-            font-size: 1.75rem;
-            color: #ffffff;
-        }
-
-        .btn-primary {
-            background-color: #ffffff;
-            border-color: #f76c38;
-            border-radius: 5px;
-        }
-
-        .btn-primary:hover {
-            background-color: #f4f0ee;
-            border-color: #ff8c55;
         }
 
         .form-control {
             padding: 10px 15px;
             border-radius: 5px;
             background: rgba(255, 255, 255, 0.8);
-        }
-
-        .icheck-primary {
-            padding-left: 0;
+            color: #000000; /* Warna teks hitam */
         }
 
         .login-box p {
             text-align: center;
-            color: #6c757d;
+            color: #000000; /* Warna teks hitam */
         }
 
-        .card-outline.card-primary {
-            border-top: 3px solid rgba(255, 132, 0, 0.7);
+        .login-box h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #000000; /* Warna teks hitam */
+        }
+
+        .btn-primary {
+            background-color: #000000; /* Warna tombol hitam */
+            border-color: #000000;
+            border-radius: 5px;
+            color: #ffffff; /* Warna teks tombol putih */
+        }
+
+        .btn-primary:hover {
+            background-color: #333333;
+            border-color: #333333;
+        }
+
+        .btn-default {
+            background-color: #dddddd;
+            border-color: #dddddd;
+            border-radius: 5px;
+            color: #000000;
+        }
+
+        .btn-default:hover {
+            background-color: #cccccc;
         }
     </style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-    <div class="card card-outline card-primary">
-        <div class="card-header text-center">
-            <a href="{{ url('/') }}" class="h1"><b>WIKO</b>KOPI</a>
+    <h1>Daftar Akun</h1>
+    <p class="login-box-msg">Silakan isi form di bawah ini untuk membuat akun baru</p>
+    <form action="{{ url('signup') }}" method="POST" id="form-tambah">
+        @csrf
+        <div class="form-group">
+            <label for="level_id">Level</label>
+            <select class="form-control" id="level_id" name="level_id" required>
+                <option value="">- Pilih Level -</option>
+                @foreach($level as $item)
+                    <option value="{{ $item->level_id }}">{{ $item->level_nama }}</option>
+                @endforeach
+            </select>
+            <small id="error-level_id" class="error-text text-danger"></small>
         </div>
-        <div class="card-body">
-            <p class="login-box-msg">Daftar untuk membuat akun</p>
-            <form action="{{ url('signup') }}" method="POST" id="form-tambah">
-                @csrf
-                <div class="form-group">
-                    <label for="level_id">Level</label>
-                    <select class="form-control" id="level_id" name="level_id" required>
-                        <option value="">- Pilih Level -</option>
-                        @foreach($level as $item)
-                            <option value="{{ $item->level_id }}">{{ $item->level_nama }}</option>
-                        @endforeach
-                    </select>
-                    <small id="error-level_id" class="error-text text-danger"></small>
-                </div>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" required>
-                    <small id="error-username" class="error-text text-danger"></small>
-                </div>
-                <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}" required>
-                    <small id="error-nama" class="error-text text-danger"></small>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                    <small id="error-password" class="error-text text-danger"></small>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <a class="btn btn-default btn-block" href="{{ url('/') }}">Kembali</a>
-                    </div>
-                    <div class="col-6">
-                        <button type="submit" class="btn btn-primary btn-block">Daftar</button>
-                    </div>
-                </div>
-            </form>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" required>
+            <small id="error-username" class="error-text text-danger"></small>
         </div>
-    </div>
+        <div class="form-group">
+            <label for="nama">Nama</label>
+            <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}" required>
+            <small id="error-nama" class="error-text text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+            <small id="error-password" class="error-text text-danger"></small>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <a class="btn btn-default btn-block" href="{{ url('/') }}">Kembali</a>
+            </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary btn-block">Daftar</button>
+            </div>
+        </div>
+    </form>
 </div>
 
 <!-- jQuery -->
