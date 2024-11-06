@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 // praktikum 1 js 10
 Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
+// praktikum 1 js 11
+Route::post('/register1', App\Http\Controllers\Api\RegisterController::class)->name('register1');
 // praktikum 2 js 10
 Route::post('/login', App\Http\Controllers\Api\LoginController::class)->name('login');
 
