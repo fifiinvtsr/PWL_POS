@@ -40,7 +40,6 @@ Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);*/
 
 Route::pattern('id', '[0-9]+'); //ketika ada parameter {id}, maka harus berupa angka
 
-
 Route::get('signup', [RegistrasiController::class, 'registrasi'])->name('signup');
 Route::post('signup', [RegistrasiController::class, 'store']);
 
@@ -168,7 +167,7 @@ Route::middleware(['auth'])->group(function(){
     });
 
     //Semua route di grup ini harus punya role ADM (Administrator), MNG (Manager), dan STF (Staff/Kasir)
-    Route::group(['prefix' => 'penjualan', 'middleware'=> 'authorize:ADM,MNG,STF'], function(){
+    Route::group(['prefix' => 'penjualan', 'middleware'=> 'authorize:ADM,MNG,STF,KSR'], function(){
         Route::get('/', [PenjualanController::class, 'index']);                                //menampilkan laman awal penjualan
         Route::post('/list', [PenjualanController::class, 'list']);                            //menampilkan data penjualan dalam bentuk json untuk datatables
         Route::get('/create_ajax', [PenjualanController::class, 'create_ajax']);               //menampilkan laman form tambah penjualan AJAX
